@@ -1,5 +1,5 @@
 class School
-  attr_reader :name, :locations, :descriptions, :rating, :link
+  attr_accessor :name, :locations, :description, :rating, :link
   @@all = []
   
   def initialize(info_hash)
@@ -7,7 +7,7 @@ class School
     @@all << self
   end
   
-  def all
+  def self.all
     @@all
   end
 end
