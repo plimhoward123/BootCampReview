@@ -1,3 +1,5 @@
+require 'pry'
+
 class CLI
   
   def initialize
@@ -24,17 +26,22 @@ class CLI
     
     
     #gets user input 
-    while (input = gets.chomp.to_i) != 0
-      if(input > 1 && input < 35 && input.is_a?(Integer))
+    while (input = gets.chomp)
+      binding.pry
+      input = input.to_i
+      if(input.between?(1,School.all.length))
         tmpObj = School.all[input-1]
         puts "Name        : " + tmpObj.name
         puts "Rating      : " + tmpObj.rating
         puts "Locations   : " + tmpObj.locations
         puts "Description : " + tmpObj.description + "\n\n"
+      elsif (input == 0)
+          break
       else
-       puts "Please enter 1-#{School.all.length}"
+        puts "Please enter 1-#{School.all.length}"
       end
     end
+    
   end
   
 end
